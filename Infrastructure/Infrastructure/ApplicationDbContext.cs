@@ -10,10 +10,10 @@ namespace Infrastructure
 {
 	public class ApplicationDbContext:DbContext
 	{
-		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-	   : base(options)
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
 		}
+
 
 		public DbSet<Applicants> Applicants { get; set; }
 		public DbSet<Education> Educations { get; set; }
