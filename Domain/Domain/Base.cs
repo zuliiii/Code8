@@ -8,6 +8,6 @@ namespace Domain
 {
 	public class Base
 	{
-		public string Id { get; set; }
+		public Guid Id { get; set; }
 	}
 }
