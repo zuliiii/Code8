@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-	public interface IUserRepository
+	public interface IUserService
 	{
-		Task<User> GetUserByIdAsync(int userId);
+		Task<User> CreateUserAsync(User user);
+		Task<User> GetUserByEmailAsync(string email);
 	}
-
 }
