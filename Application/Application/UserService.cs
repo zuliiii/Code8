@@ -1,5 +1,4 @@
 ﻿using Domain;
-using Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,33 +9,18 @@ namespace Application
 {
 	public class UserService
 	{
-		private readonly ApplicationDbContext _context;
+		private readonly IUserRepository _userRepository;
 
-		public UserService(ApplicationDbContext context)
+		public UserService(IUserRepository userRepository)
 		{
-			_context = context;
+			_userRepository = userRepository;
 		}
 
-		public async Task<bool> RegisterAsync(string email, string password)
+		public async Task<User> GetUserByIdAsync(int userId)
 		{
-			if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-			{
-				return false;
-			}
-
-			string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-
-			var newUser = new User
-			{
-				Email = email,
-				Password = hashedPassword
-			};
-
-			_context.Users.Add(newUser);
-			await _context.SaveChangesAsync();
-
-			return true; 
+			return await _userRepository.GetUserByIdAsync(userId);
 		}
 	}
+
 
 }
